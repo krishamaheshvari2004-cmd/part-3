@@ -214,18 +214,14 @@ footer{
 </div>
 
 <!-- MUSIC -->
-<iframe id="music"
-    width="0" height="0"
-    src="https://www.youtube.com/embed/WZmXhqrjTCY?enablejsapi=1"
-    allow="autoplay"
-></iframe>
-
+<iframe id="music" width="0" height="0" allow="autoplay"></iframe>
 
 <script>
 /* PASSWORD */
 const PASSWORD="foreverus";
 function checkPass(){
-  if(document.getElementById("pass").value===PASSWORD){
+  const val = document.getElementById("pass").value;
+  if(val===PASSWORD){
     document.getElementById("lock").style.display="none";
     document.getElementById("main").style.display="block";
   }else{
@@ -234,15 +230,15 @@ function checkPass(){
 }
 
 /* MUSIC */
-let playing=false;
-function toggleMusic(){
-  const m=document.getElementById("music");
-  if(!playing){
-    m.src="https://www.youtube.com/embed/8A3rKk1G3xg?autoplay=1";
-    playing=true;
-  }else{
-    m.src="";
-    playing=false;
+let musicPlayed = false;
+function toggleMusic() {
+  const iframe = document.getElementById("music");
+  if (!musicPlayed) {
+    iframe.src = "https://www.youtube.com/embed/WZmXhqrjTCY?autoplay=1";
+    musicPlayed = true;
+  } else {
+    iframe.src = "";
+    musicPlayed = false;
   }
 }
 
@@ -292,30 +288,6 @@ function closePopup(){
 }
 </script>
 
-<script>
-let player;
-let playing = false;
-
-// Load YouTube IFrame API
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-document.body.appendChild(tag);
-
-// This function is called automatically by the YouTube API
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('music');
-}
-
-function toggleMusic(){
-  if (!player) return;
-  if (!playing){
-    player.playVideo();
-    playing = true;
-  } else {
-    player.pauseVideo();
-    playing = false;
-  }
-}
-</script>
 </body>
 </html>
+
