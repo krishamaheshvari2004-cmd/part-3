@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Us 💚</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --green1:#0b3d2e;
+  --green2:#145a43;
+  --gold:#d4af37;
+  --glass:rgba(255,255,255,0.15);
+}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,var(--green1),var(--green2));
+  color:#fff;
+  text-align:center;
+}
+
+/* PASSWORD */
+.lock{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.lock h2{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-size:2.5rem;
+}
+.lock input{
+  margin-top:20px;
+  padding:14px;
+  width:220px;
+  border:none;
+  border-radius:30px;
+  text-align:center;
+}
+.lock button{
+  margin-top:15px;
+  padding:12px 30px;
+  background:var(--gold);
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+.error{
+  margin-top:10px;
+  color:#ffcccc;
+  display:none;
+}
+
+/* MAIN */
+.main{display:none;}
+
+header{
+  padding:50px 20px 20px;
+}
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;
+  color:var(--gold);
+}
+header button{
+  margin-top:15px;
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  background:var(--gold);
+  cursor:pointer;
+}
+
+/* SLIDER */
+.slider{
+  width:90%;
+  max-width:650px;
+  margin:30px auto;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+.slider img{
+  width:100%;
+  display:none;
+}
+.slider img.active{
+  display:block;
+  animation:fade 2s;
+}
+@keyframes fade{
+  from{opacity:0; transform:scale(1.05)}
+  to{opacity:1; transform:scale(1)}
+}
+
+/* QUESTIONS */
+.section{
+  padding:40px 20px;
+}
+.section h2{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+}
+.questions{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{
+  background:var(--glass);
+  border:1px solid var(--gold);
+  border-radius:20px;
+  padding:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,0.25);
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.popup-box{
+  background:#145a43;
+  padding:30px;
+  border-radius:20px;
+  width:80%;
+  max-width:350px;
+}
+.popup-box button{
+  margin-top:15px;
+  padding:10px 25px;
+  background:var(--gold);
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  padding:50px 20px;
+  color:var(--gold);
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div class="lock" id="lock">
+  <h2>Private 💚</h2>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="checkPass()">Unlock</button>
+  <div class="error" id="error">Wrong password</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main">
+
+<header>
+  <h1>For Us 💚</h1>
+  <p>Still choosing each other.</p>
+  <button onclick="toggleMusic()">🎶 Play / Pause our song</button>
+</header>
+
+<!-- SLIDER -->
+<div class="slider">
+  <img src="https://i.ibb.co/8nwKnFdv/IMG-8598.jpg" class="active">
+  <img src="https://i.ibb.co/5XZTyn0b/IMG-8600.jpg">
+  <img src="https://i.ibb.co/xksq2vL/IMG-8601.jpg">
+  <img src="https://i.ibb.co/zhq8jqsx/IMG-8602.jpg">
+  <img src="https://i.ibb.co/Q7GNWSrP/3-A7-C2109-ECBE-4916-B7-A0-6047-AED8-DA6-C.jpg">
+  <img src="https://i.ibb.co/pBrK1Tb0/2-B2-E8-F1-D-69-CE-4-EFA-A2-BD-79-C85-CD37-DD4.jpg">
+  <img src="https://i.ibb.co/fd61CkxD/CC5735-D9-6-BA9-4653-A847-9264-AFEA7370.jpg">
+  <img src="https://i.ibb.co/LDgJX80H/672273-DE-48-FC-4441-BDF9-393-DC9-C0-BA58.jpg">
+</div>
+
+<!-- QUESTIONS -->
+<div class="section">
+  <h2>Who is more likely? 💚</h2>
+  <div class="questions" id="questions"></div>
+</div>
+
+<footer>
+  Still choosing each other, always 🌲
+</footer>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3 id="popupQ"></h3>
+    <button onclick="closePopup()">You 💚</button>
+    <button onclick="closePopup()">Me 😌</button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<iframe id="music"
+    width="0" height="0"
+    src="https://www.youtube.com/embed/WZmXhqrjTCY?enablejsapi=1"
+    allow="autoplay"
+></iframe>
+
+
+<script>
+/* PASSWORD */
+const PASSWORD="foreverus";
+function checkPass(){
+  if(document.getElementById("pass").value===PASSWORD){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("main").style.display="block";
+  }else{
+    document.getElementById("error").style.display="block";
+  }
+}
+
+/* MUSIC */
+let playing=false;
+function toggleMusic(){
+  const m=document.getElementById("music");
+  if(!playing){
+    m.src="https://www.youtube.com/embed/8A3rKk1G3xg?autoplay=1";
+    playing=true;
+  }else{
+    m.src="";
+    playing=false;
+  }
+}
+
+/* SLIDER */
+let i=0;
+const imgs=document.querySelectorAll(".slider img");
+setInterval(()=>{
+  imgs[i].classList.remove("active");
+  i=(i+1)%imgs.length;
+  imgs[i].classList.add("active");
+},3500);
+
+/* QUESTIONS */
+const qs=[
+"Who is the most naughty?",
+"Who is short tempered but cools fast?",
+"Who says sorry first?",
+"Who is more dramatic?",
+"Who gets jealous faster?",
+"Who is more emotional?",
+"Who is the bigger foodie?",
+"Who is more stubborn?",
+"Who overthinks the most?",
+"Who gets angry but still cares deeply?",
+"Who is more possessive?",
+"Who hides feelings badly?",
+"Who pampers more?",
+"Who misses first?",
+"Who acts tough but is soft inside?"
+];
+
+const qDiv=document.getElementById("questions");
+qs.forEach(q=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerText=q;
+  d.onclick=()=>openPopup(q);
+  qDiv.appendChild(d);
+});
+
+function openPopup(q){
+  document.getElementById("popupQ").innerText=q;
+  document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+<script>
+let player;
+let playing = false;
+
+// Load YouTube IFrame API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
+// This function is called automatically by the YouTube API
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('music');
+}
+
+function toggleMusic(){
+  if (!player) return;
+  if (!playing){
+    player.playVideo();
+    playing = true;
+  } else {
+    player.pauseVideo();
+    playing = false;
+  }
+}
+</script>
+</body>
+</html>
